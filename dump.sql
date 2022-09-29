@@ -1,0 +1,1 @@
+sudo -u postgres pg_dump originbank_db > originbank_db
