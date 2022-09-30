@@ -39,7 +39,7 @@ model transactions {
   from_user_id Int 
   to_user users @relation(fields: [to_user_id], references: [id], name: "to_transactions") 
   to_user_id Int 
-  date DateTime
+  date DateTime @default(now())
   amount String
 }
 
@@ -48,6 +48,6 @@ model payments {
   user users @relation(fields: [user_id], references: [id]) 
   user_id Int
   company_name String
-  date DateTime
+  date DateTime @default(now())
   amount String
 }
