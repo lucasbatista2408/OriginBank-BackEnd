@@ -6,3 +6,48 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model users {
+  id          Int           @id @default(autoincrement())      
+  first_name String
+  last_name String
+  email String
+  cpf Int @unique
+  dob String
+  password    String
+  Cards cards[]
+  from_transactions transactions[] @relation(name: "from_transactions")
+  to_transactions transactions[] @relation(name: "to_transactions")
+  Payments payments[]
+}
+
+model cards {
+  id          Int           @id @default(autoincrement())
+  user users @relation(fields: [user_id], references: [id]) 
+  user_id Int
+  number Int @unique
+  holder_name String
+  security_code Int
+  expiration_date String
+  password String
+  blocked Boolean
+}
+
+model transactions {
+  id          Int           @id @default(autoincrement())
+  from_user users @relation(fields: [from_user_id], references: [id], name: "from_transactions") 
+  from_user_id Int 
+  to_user users @relation(fields: [to_user_id], references: [id], name: "to_transactions") 
+  to_user_id Int 
+  date DateTime
+  amount String
+}
+
+model payments {
+  id          Int           @id @default(autoincrement())
+  user users @relation(fields: [user_id], references: [id]) 
+  user_id Int
+  company_name String
+  date DateTime
+  amount String
+}

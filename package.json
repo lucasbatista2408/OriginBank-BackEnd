@@ -18,6 +18,7 @@
   "author": "lucasbatista2408",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.4.0",
     "@types/jsonwebtoken": "^8.5.9",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
