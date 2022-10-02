@@ -6,10 +6,10 @@ export const signinSchema = joi.object({
 });
 
 export const signupSchema = joi.object({
-  firstName: joi.string().required(),
-  secondName: joi.string().required(),
+  first_name: joi.string().required(),
+  last_name: joi.string().required(),
   email: joi.string().email().required(),
-  securityNumber: joi.number().min(11).max(11).required(),
+  cpf: joi.string().required(),
   dob: joi.string().required(),
   password: joi.string().min(4).required(),
   confirm: joi.ref("password")

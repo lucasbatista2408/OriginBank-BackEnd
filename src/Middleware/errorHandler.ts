@@ -19,5 +19,5 @@ export default function errorHandlingMiddleware (error: any, req: Request, res: 
 		return res.status(400).send(error.message);
 	}
 
-	res.sendStatus(500); 
+	res.status(500).send("errorHandler"); 
 }

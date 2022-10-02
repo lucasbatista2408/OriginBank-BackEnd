@@ -4,7 +4,7 @@ import * as userService from "../Components/user/userService"
 
 export async function checkUser(req: Request, res: Response, next: NextFunction){
 
-  const cpf = Number(req.body.cpf)
+  const cpf = String(req.body.cpf)
 
   await userService.checkUser(cpf);
 
@@ -13,7 +13,7 @@ export async function checkUser(req: Request, res: Response, next: NextFunction)
 
 export async function checkLogin(req: Request, res: Response, next: NextFunction){
   
-  const cpf = Number(req.body.cpf)
+  const cpf = String(req.body.cpf)
 
   const response:users = await userService.checkLogin(cpf);
 

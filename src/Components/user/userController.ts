@@ -5,8 +5,9 @@ import * as userServices from "../user/userService"
 export async function createUser(req: Request, res: Response){
 
   const user:userData = req.body;
+	const password = res.locals.encrypted
 
-	const response = await userServices.createUser(user)
+	const response = await userServices.createUser(user, password)
 
   res.status(201).send(response)
 }

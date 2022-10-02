@@ -3,16 +3,16 @@ import * as userRepository from "../user/userRepository"
 import jwt from "jsonwebtoken";
 import { userData } from "../../Types/userTypes";
 
-export async function checkUser(cpf:number){
+export async function checkUser(cpf:string){
 
   const response = await userRepository.checkUser(cpf)
-
+  
   if(response){
     throw {type:"conflict", message: "You already have an account"}
   }
 }
 
-export async function checkLogin(cpf:number){
+export async function checkLogin(cpf:string){
 
   const response = await userRepository.checkLogin(cpf)
 
@@ -23,9 +23,19 @@ export async function checkLogin(cpf:number){
   return response
 }
 
-export async function createUser(user:userData){
+export async function createUser(user:userData, password:string){
 
-  const response = await userRepository.createUser(user)
+
+  const userData:userData = {
+    first_name: user.first_name,
+    last_name: user.last_name,
+    email: user.email,
+    cpf: user.cpf,
+    dob: user.dob,
+    password,
+  }
+
+  const response = await userRepository.createUser(userData)
 
 	if (!response) {
 		throw { type: "bad_request", message: "could not create new user" };
@@ -40,5 +50,5 @@ export function signinUser(id: string, name:string, key: string) {
 
 	console.log(token);
 
-	return {token};
+	return {token, name, id};
 }

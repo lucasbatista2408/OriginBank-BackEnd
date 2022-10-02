@@ -11,8 +11,10 @@ const cryptr = new Cryptr(secret);
 export function passwordEncrypt(req:Request, res:Response, next:NextFunction){
 
 	const password:string = req.body.password;
+	console.log(password)
 
 	const encrypted_password = bcrypt.hashSync(password, 10);
+	console.log(encrypted_password)
 
 	res.locals.encrypted = encrypted_password;
 

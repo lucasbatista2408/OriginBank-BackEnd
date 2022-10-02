@@ -1,7 +1,7 @@
 import client from "../../../db_strategy/database";
 import { userData } from "../../Types/userTypes";
 
-export async function checkUser(cpf:number){
+export async function checkUser(cpf:string){
 
   const response = await client.users.findUnique({
     where: {
@@ -12,14 +12,14 @@ export async function checkUser(cpf:number){
   return response
 }
 
-export async function createUser(user:userData){
+export async function createUser(userData:userData){
 
-  const response = await client.users.create({data:user})
+  const response = await client.users.create({data:userData})
 
   return response
 }
 
-export async function checkLogin(cpf:number){
+export async function checkLogin(cpf:string){
 
   const response = await client.users.findUnique({
     where: {
