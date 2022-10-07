@@ -9,7 +9,7 @@ const router = Router();
 //creates new card
 router.post('/new-card', jwtValidation, newCard);
 
-// //unblock card
+//unblock card
 // router.post('/card/unblock', checkCard, CardMiddleware.checkIfUnblocked, passwordValidation, unblockCard)
 
 // //block card

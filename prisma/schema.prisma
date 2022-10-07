@@ -16,9 +16,8 @@ model users {
   dob String
   password    String
   Cards cards[]
-  from_transactions transactions[] @relation(name: "from_transactions")
-  to_transactions transactions[] @relation(name: "to_transactions")
-  Payments payments[]
+  transactions transactions[]
+  payments payments[]
 }
 
 model cards {
@@ -35,12 +34,12 @@ model cards {
 
 model transactions {
   id          Int           @id @default(autoincrement())
-  from_user users @relation(fields: [from_user_id], references: [id], name: "from_transactions") 
-  from_user_id Int 
-  to_user users @relation(fields: [to_user_id], references: [id], name: "to_transactions") 
-  to_user_id Int 
-  date DateTime @default(now())
-  amount String
+  user users @relation(fields: [user_id], references: [id]) 
+  user_id Int 
+  description String 
+  date String
+  type String
+  amount Float
 }
 
 model payments {
@@ -48,6 +47,6 @@ model payments {
   user users @relation(fields: [user_id], references: [id]) 
   user_id Int
   company_name String
-  date DateTime @default(now())
-  amount String
+  date String
+  amount Float
 }

@@ -2,6 +2,9 @@ import { NextFunction } from "express"
 import bcrypt from 'bcrypt'
 import dayjs from "dayjs";
 import * as userRepository from "../user/userRepository"
+import * as cardRepository from "../card/cardRepository"
+import { cards } from "@prisma/client";
+import { card } from "../../Types/cardTypes";
 
 export async function getCardHolderName(user_id:number){
 
@@ -15,19 +18,6 @@ export async function getCardHolderName(user_id:number){
   const lastName = user.last_name.toUpperCase()
   const cardholderName = `${firstName} ${lastName}`
 
-  // const nameUpperSplit = user.last_name.toUpperCase().split(" ")
-  //   console.log(nameUpperSplit)
-  // const slice = nameUpperSplit.slice(1,nameUpperSplit.length-1)
-  //   console.log(slice)
-  // const firstName = user.first_name.toUpperCase()
-  //   console.log(firstName)
-  // const lastName = nameUpperSplit[-1].toUpperCase()
-  //   console.log(lastName)
-  // const middleName = slice.filter(e => e.length > 3).map(e=> e[0]).join(" ")
-  //   console.log(middleName)
-  // const cardholderName = `${firstName} ${middleName} ${lastName}`
-    console.log(cardholderName)
-
   return cardholderName
 }
 
@@ -36,4 +26,16 @@ export function getExpirationDate(){
   const expirationDate = dayjs().add(5, 'year').format('MM/YY')
 
   return expirationDate
+}
+
+export async function checkIfCardExists(cardId:number){
+
+  const card:card = await cardRepository.findById(cardId)
+
+  //check if cards exists
+  if(!card){
+    throw {type: "error_not_found", message: "card not found"}
+  }
+
+  return card
 }
