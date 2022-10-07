@@ -14,3 +14,5 @@ router.post('/new-card', jwtValidation, newCard);
 
 // //block card
 // router.post('/card/block', checkCard, CardMiddleware.checkIfBlocked, passwordValidation, blockCard)
+
+export default router;

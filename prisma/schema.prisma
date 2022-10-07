@@ -25,7 +25,7 @@ model cards {
   id          Int           @id @default(autoincrement())
   user users @relation(fields: [user_id], references: [id]) 
   user_id Int
-  number Int @unique
+  number String @unique
   holder_name String
   security_code Int
   expiration_date String
