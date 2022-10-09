@@ -15,9 +15,11 @@ export async function jwtValidation(req:Request, res:Response, next:NextFunction
 	}
 
 	const secret_key = String(process.env.SECRET_KEY);
+	console.log(secret_key)
 
 	jwt.verify(token, secret_key, (err:any, userId:any) =>{
 		if(err){
+			console.log(err)
 			throw {type:"unauthorized", message: "invalid token"};
 		} 
 		res.locals.userId = parseInt(userId);

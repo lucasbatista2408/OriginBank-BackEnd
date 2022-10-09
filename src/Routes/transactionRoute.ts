@@ -11,6 +11,7 @@ router.get('/last-tr', jwtValidation, transactionController.getLastTransaction)
 
 router.get('/all-tr', jwtValidation, transactionController.getAllTransactions)
 
-router.get('/last-dp', jwtValidation, transactionController)
+router.get('/last-dp', jwtValidation, transactionController.getLastDeposit)
 
+router.get('/last-transfer', jwtValidation, transactionController.getLastTransfer)
 export default router;
