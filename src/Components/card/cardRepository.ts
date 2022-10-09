@@ -19,3 +19,14 @@ export async function findById(cardId:number){
 
   return response
 }
+
+export async function checkLimit(user_id:number){
+
+  const response = await client.cards.findMany({
+    where:{
+      user_id
+    }
+  })
+
+  return response
+}

@@ -39,3 +39,12 @@ export async function checkIfCardExists(cardId:number){
 
   return card
 }
+
+export async function checkLimit(user_id:number){
+
+  const response = await cardRepository.checkLimit(user_id)
+
+  if(response.length === 3){
+    throw {type: "unprocessable", message: "you can't ask for more cards"}
+  }
+}

@@ -18,3 +18,12 @@ export async function checkCard(req: Request, res: Response, next:NextFunction){
 
   next()
 }
+
+export async function checkLimit(req: Request, res: Response, next:NextFunction){
+
+  const user_id = res.locals.userId
+
+  await cardServices.checkLimit(user_id)
+
+  next()
+}

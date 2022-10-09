@@ -3,8 +3,9 @@ import { faker } from '@faker-js/faker';
 import * as cardRepository from './cardRepository';
 import * as cardServices from './cardService'
 import { cardData } from '../../Types/cardTypes';
+import client from '../../../db_strategy/database';
 
-export default async function newCard(req: Request, res: Response){
+export async function newCard(req: Request, res: Response){
 
   const number = faker.finance.creditCardNumber('visa');
   console.log(number)
@@ -35,4 +36,17 @@ export default async function newCard(req: Request, res: Response){
 
   res.status(201).send(response)
   
+}
+
+export async function getCards(req: Request, res: Response){
+  
+  const user_id = res.locals.userId
+
+  const response = await client.cards.findMany({
+    where:{
+      user_id: user_id,
+    }
+  })
+
+  res.status(200).send(response)
 }
