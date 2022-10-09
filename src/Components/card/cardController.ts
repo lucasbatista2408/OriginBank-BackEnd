@@ -4,6 +4,7 @@ import * as cardRepository from './cardRepository';
 import * as cardServices from './cardService'
 import { cardData } from '../../Types/cardTypes';
 import client from '../../../db_strategy/database';
+import { objectEnumValues } from '@prisma/client/runtime';
 
 export async function newCard(req: Request, res: Response){
 
@@ -44,8 +45,12 @@ export async function getCards(req: Request, res: Response){
 
   const response = await client.cards.findMany({
     where:{
-      user_id: user_id,
+      user_id,
     }
+  })
+
+ response.forEach(value => {
+    return value.number = value.number.replace(/-/g,'')
   })
 
   res.status(200).send(response)
