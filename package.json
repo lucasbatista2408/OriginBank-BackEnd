@@ -7,8 +7,8 @@
   "description": "backend server to a bank app",
   "main": "index.js",
   "scripts": {
-    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test prisma db seed && dotenv -e .env.test cross-env jest --no-cache",
-    "build": "tsc && npx prisma migrate deploy && npx prisma db seed",
+    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test && dotenv -e .env.test cross-env jest --no-cache",
+    "build": "tsc && npx prisma migrate deploy",
     "start": "node dist/src/server.js",
     "dev": "nodemon ./src/server.ts"
   },
