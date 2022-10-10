@@ -1,6 +1,9 @@
 {
   "name": "originbank-back",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "backend server to a bank app",
   "main": "index.js",
   "scripts": {
