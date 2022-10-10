@@ -55,3 +55,11 @@ export async function getCards(req: Request, res: Response){
 
   res.status(200).send(response)
 }
+
+export async function deleteCard(req: Request, res: Response){
+  const {id} = req.body;
+  console.log(req.body)
+  const response = await cardServices.deleteCard(id);
+
+  res.sendStatus(204)
+}

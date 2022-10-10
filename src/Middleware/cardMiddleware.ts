@@ -2,10 +2,12 @@ import { Request, Response, NextFunction} from "express";
 import * as cardServices from '../Components/card/cardService'
 
 export async function checkCard(req: Request, res: Response, next:NextFunction){
+  
+  const {id} = req.body
 
-  const data = Object(req.body)
+  console.log(id)
 
-  const card = await cardServices.checkIfCardExists(data.cardId)
+  const card = await cardServices.checkIfCardExists(id)
 
   res.locals.userId = card.user_id;
   res.locals.cardId = card.id;
@@ -24,6 +26,14 @@ export async function checkLimit(req: Request, res: Response, next:NextFunction)
   const user_id = res.locals.userId
 
   await cardServices.checkLimit(user_id)
+
+  next()
+}
+
+export async function checkIfUnblocked(req: Request, res: Response, next:NextFunction){
+  const {id} = req.body
+
+  await cardServices.checkIfUnblocked(id)
 
   next()
 }

@@ -9,6 +9,7 @@ export async function jwtValidation(req:Request, res:Response, next:NextFunction
 	const {authorization} = req.headers;
 	const token = authorization?.replace("Bearer ", "");
 	console.log(token);
+	console.log(req.headers)
 
 	if(!token){
 		throw {type:"unauthorized", message: "token missing"};
@@ -20,7 +21,7 @@ export async function jwtValidation(req:Request, res:Response, next:NextFunction
 	jwt.verify(token, secret_key, (err:any, userId:any) =>{
 		if(err){
 			console.log(err)
-			throw {type:"unauthorized", message: "invalid token"};
+			res.status(403).send("invalid token")
 		} 
 		res.locals.userId = parseInt(userId);
 		next();

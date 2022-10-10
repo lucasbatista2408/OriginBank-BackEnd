@@ -12,8 +12,11 @@ router.post('/new-card', jwtValidation, CardMiddleware.checkLimit, cardControlle
 //getCards
 router.get('/get-card', jwtValidation, cardController.getCards)
 
+//deleteCard
+router.delete('/delete-card', jwtValidation, CardMiddleware.checkCard, cardController.deleteCard)
+
 //unblock card
-// router.post('/card/unblock', checkCard, CardMiddleware.checkIfUnblocked, passwordValidation, unblockCard)
+router.post('/card/unblock', CardMiddleware.checkCard, CardMiddleware.checkIfUnblocked, passwordValidation, unblockCard)
 
 // //block card
 // router.post('/card/block', checkCard, CardMiddleware.checkIfBlocked, passwordValidation, blockCard)

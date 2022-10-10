@@ -18,6 +18,9 @@ export default function errorHandlingMiddleware (error: any, req: Request, res: 
 	if(error.type === "could_not_update" || error.type === "bad_request"){
 		return res.status(400).send(error.message);
 	}
+	if(error.type === "unauthorized"){
+		return res.status(401).send(error.message)
+	}
 
 	res.status(500).send("errorHandler"); 
 }

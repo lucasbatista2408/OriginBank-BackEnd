@@ -48,3 +48,23 @@ export async function checkLimit(user_id:number){
     throw {type: "unprocessable", message: "you can't ask for more cards"}
   }
 }
+
+export async function deleteCard(id:number){
+
+  console.log(id)
+
+  const response = await cardRepository.deleteCard(id);
+
+  console.log(response)
+
+  return response
+}
+
+export async function checkIfUnblocked(id:number){
+
+  const response = await cardRepository.checkIfUnblocked(id)
+
+  if(!response){
+    throw {type: "could_not_update", message: "could not attend the request"}
+  }
+}

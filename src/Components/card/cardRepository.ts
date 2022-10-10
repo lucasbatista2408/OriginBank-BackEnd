@@ -30,3 +30,14 @@ export async function checkLimit(user_id:number){
 
   return response
 }
+
+export async function deleteCard(id:number){
+
+  const response = await client.cards.delete({
+    where:{
+      id
+    }
+  })
+
+  return response
+}
