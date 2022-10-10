@@ -37,10 +37,10 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
     "pg": "^8.8.0",
-    "tsconfig": "^7.0.0"
+    "tsconfig": "^7.0.0",
+    "@faker-js/faker": "^7.5.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.5.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/cryptr": "^4.0.1",
