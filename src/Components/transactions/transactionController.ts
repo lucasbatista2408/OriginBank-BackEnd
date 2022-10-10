@@ -92,3 +92,15 @@ export async function getLastTransfer(req:Request, res:Response){
 
   return res.status(200).send(last)
 }
+
+export async function getBalance(req:Request, res:Response){
+  const user_id = res.locals.userId
+
+  const response = await client.transactions.findMany({
+    where:{
+      user_id
+    }
+  })
+
+  return res.status(200).send(response)
+}

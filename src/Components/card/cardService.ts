@@ -64,7 +64,40 @@ export async function checkIfUnblocked(id:number){
 
   const response = await cardRepository.checkIfUnblocked(id)
 
-  if(!response){
-    throw {type: "could_not_update", message: "could not attend the request"}
+  if(response?.blocked === false){
+    throw {type: "bad_request", message: "Card is Already Unblocked"}
   }
+
+  return response
+}
+
+export async function unblockCard(id:number){
+
+  const response = await cardRepository.unblockCard(id);
+
+  if(response.blocked === true){
+    throw {type:"could_not_update", message: "Card could not be unblocked"}
+  }
+
+}
+
+export async function checkIfBlocked(id:number){
+
+  const response = await cardRepository.checkIfBlocked(id)
+
+  if(response?.blocked === true){
+    throw {type: "bad_request", message: "Card is Already Blocked"}
+  }
+
+  return response
+}
+
+export async function blockCard(id:number){
+
+  const response = await cardRepository.blockCard(id);
+
+  if(response.blocked === false){
+    throw {type:"could_not_update", message: "Card could not be unblocked"}
+  }
+
 }

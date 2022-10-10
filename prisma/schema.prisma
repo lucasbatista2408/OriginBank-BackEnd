@@ -26,7 +26,7 @@ model cards {
   user_id Int
   number String @unique
   holder_name String
-  security_code Int
+  security_code String
   expiration_date String
   password String
   blocked Boolean

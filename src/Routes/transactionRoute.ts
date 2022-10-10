@@ -7,6 +7,8 @@ const router = Router();
 
 router.post('/new-tr', jwtValidation, transactionController.createTransaction)
 
+router.get('/balance', jwtValidation, transactionController.getBalance)
+
 router.get('/last-tr', jwtValidation, transactionController.getLastTransaction)
 
 router.get('/all-tr', jwtValidation, transactionController.getAllTransactions)

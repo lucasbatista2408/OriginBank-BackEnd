@@ -10,7 +10,7 @@ export async function newCard(req: Request, res: Response){
 
   const number = faker.finance.creditCardNumber('visa');
   console.log(number)
-  const security_code = parseInt(faker.finance.creditCardCVV())
+  const security_code = faker.finance.creditCardCVV()
   const password = faker.random.numeric(4)
   const blocked = true;
   const user_id = res.locals.userId
@@ -60,6 +60,22 @@ export async function deleteCard(req: Request, res: Response){
   const {id} = req.body;
   console.log(req.body)
   const response = await cardServices.deleteCard(id);
+
+  res.sendStatus(204)
+}
+
+export async function unblockCard(req: Request, res: Response){
+  const {id} = req.body;
+
+  await cardServices.unblockCard(id);
+
+  res.sendStatus(204)
+}
+
+export async function blockCard(req: Request, res: Response){
+  const {id} = req.body;
+
+  await cardServices.blockCard(id);
 
   res.sendStatus(204)
 }

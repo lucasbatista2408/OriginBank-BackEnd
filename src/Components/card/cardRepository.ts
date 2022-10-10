@@ -1,3 +1,4 @@
+import { cards } from "@prisma/client";
 import client from "../../../db_strategy/database";
 import { card, cardData } from "../../Types/cardTypes";
 
@@ -37,6 +38,54 @@ export async function deleteCard(id:number){
     where:{
       id
     }
+  })
+
+  return response
+}
+
+export async function checkIfUnblocked(id:number){
+  const response:card = await client.cards.findUnique({
+    where:{
+      id
+    }
+  })
+
+  return response
+}
+
+export async function unblockCard(id:number){
+
+  const response:card = await client.cards.update({
+    where: {
+      id
+    },
+    data: {
+      blocked: false
+    },
+  })
+
+  return response
+}
+
+export async function checkIfBlocked(id:number){
+  const response:card = await client.cards.findUnique({
+    where:{
+      id
+    }
+  })
+
+  return response
+}
+
+export async function blockCard(id:number){
+
+  const response:card = await client.cards.update({
+    where: {
+      id
+    },
+    data: {
+      blocked: true
+    },
   })
 
   return response

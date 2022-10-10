@@ -16,9 +16,9 @@ router.get('/get-card', jwtValidation, cardController.getCards)
 router.delete('/delete-card', jwtValidation, CardMiddleware.checkCard, cardController.deleteCard)
 
 //unblock card
-router.post('/card/unblock', CardMiddleware.checkCard, CardMiddleware.checkIfUnblocked, passwordValidation, unblockCard)
+router.put('/card/unblock', CardMiddleware.checkCard, CardMiddleware.checkIfUnblocked, cardController.unblockCard)
 
-// //block card
-// router.post('/card/block', checkCard, CardMiddleware.checkIfBlocked, passwordValidation, blockCard)
+//block card
+router.put('/card/block', CardMiddleware.checkCard, CardMiddleware.checkIfBlocked, cardController.blockCard)
 
 export default router;

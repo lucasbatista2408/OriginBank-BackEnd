@@ -37,3 +37,11 @@ export async function checkIfUnblocked(req: Request, res: Response, next:NextFun
 
   next()
 }
+
+export async function checkIfBlocked(req: Request, res: Response, next:NextFunction){
+  const {id} = req.body
+
+  await cardServices.checkIfBlocked(id)
+
+  next()
+}
